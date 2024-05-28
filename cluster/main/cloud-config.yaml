@@ -1,3 +1,4 @@
+---
 #cloud-config
 # TODO: Add go-templating for MAC filtering
 hostname: k8s-main-{{ trunc 6 .MachineID }}
