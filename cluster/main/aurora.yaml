@@ -3,3 +3,4 @@ release_version: "v3.0.11"
 flavor: "rockylinux"
 flavor_release: "9"
 repository: "kairos-io/kairos"
+cloud_config: https://raw.githubusercontent.com/Euvaz/Kairos-Bootstrap/main/cluster/main/cloud-config.yaml
