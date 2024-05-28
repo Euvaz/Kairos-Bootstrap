@@ -1,16 +1,16 @@
 #cloud-config
 # TODO: Add go-templating for MAC filtering
-hostname: k8s-{{ trunc 6 .MachineID }}
+hostname: k8s-main-{{ trunc 6 .MachineID }}
 users:
-    - ENC[AES256_GCM,data:5aZnCr9OHj6+BQHMiQvY,iv:hS5pcKsV5JCov3EloyQLUrPH/EullGcaG+iws8w0p1Q=,tag:z+iB3UCAmCll+LI+LwKJ4w==,type:comment]
-    - ENC[AES256_GCM,data:A/7O0Vzs8+Jn/5Ug1AD/ZoXKzDk=,iv:pibUqd5Rs9SEfKaKYOnwOrri0wqYxNDfVpqGd9bV2u4=,tag:6BVDkviuUWCH3bul6HFs7Q==,type:comment]
-    - ENC[AES256_GCM,data:Bqt5DrAJtdQeOJoCmxOsX4ixs3u3NBLrUlgi,iv:XYYIj13oFJTNmHk+Y6WN5hojhj9qNVmvtUv1dkMoF9Q=,tag:lM/4h5ulfWgoK+wW4quiOQ==,type:comment]
-    - name: ENC[AES256_GCM,data:rMaseERq,iv:U36xtd/VH2OXbnnIxwWz7gkwUJ1ORi2QimxLG4lQpHk=,tag:FZ24Js80dJlvf47I+setQA==,type:str]
+    # - name: kairos
+    #   lock_passwd: true
+    #   shell: /usr/sbin/nologin
+    - name: seraph
       groups:
-        - ENC[AES256_GCM,data:QHFb440=,iv:85IjyqxVrJ25c/sq4GKl90vQHgdd4+jC0wn66RubY18=,tag:8Okdbdsw1BBkSny/RpSrDw==,type:str]
-      lock_passwd: ENC[AES256_GCM,data:jXUXmQ==,iv:pbsVfaFyiEoPBSwr+J58Sj/3BZ59jt3wJhrE6YL7M8E=,tag:3C3exNgg8XYs5kmEdV+UkQ==,type:bool]
+        - admin
+      lock_passwd: true
       ssh_authorized_keys:
-        - ENC[AES256_GCM,data:82eHeaMEZgtivJYp,iv:8hTXleHukjr5BFxmSmTqt1RFSTfTAg9XqS995Hn8GVA=,tag:S8+/hs0eZ29/NqVMW2Fteg==,type:str]
+        - github:Euvaz
 install:
     auto: true
     device: /dev/sda
@@ -25,39 +25,5 @@ k3s:
         - --flannel-backend none
         - --service-cidr 10.96.0.0/12
         - --write-kubeconfig-mode 0644
-k3s-agent:
-    enabled: true
 kubevip:
-    # TODO: Introduce go-templating
     eip: 192.168.122.254
-p2p:
-    disable_dht: true
-    vpn:
-        create: false
-        use: false
-    network_token: ENC[AES256_GCM,data:bMod5OPwQtI37BFRIDqufAEfqZxs9i4E0W55FiSW6R6ObIClUtMmSUe5Q4z11dIwpWSAPgcFg3QrWJeoCtZfIjbs3Vp5TDO0ab8AMX6b5+H4I+4uvQ+bj+3yGgSx5GRzgkU8FBnOetZe3+Z5UbAShEHCyOv85/Y7sjcyocbpzwhwI4VpXmL0iGyLSLGp+ZuXcykV8JiOksj3O13x6QApJUmPM45IcGkDxfqoY/mVtk5mQ7qmcnpoyGcSD3/3Tfu/qZ1/CoiNjax1ONguamu/fWDTUAQ3h5/DlSp2vMByf8Iby1W83sv9uk7T8a4aAZY1iLJex8FBRnRMqym9FUyEaQzstx6xM5Agpi7Wbb0eyVNPFnmG/mKRGi7CN3HMz9pCJV6j/DM0R4ZQ5iP0S44l6ID8OSuSH+qcRWQS7eb0B/mGURlv3OCY1ZNzwX+O8Wdiu7Tzg0N9sQqhnz8b0FvCEv+vDlgISZTZ3lKPohj6mQnVUO+E9v98qZIczXeOjgqG2fsPrSv2YUjmtmuysB8K7/kM6pASQ8EugaPLXbanxMmQFIHlduQvZD4tTmx/lckTNd8iNrRllfdHnYr875iQL1aKJXYTpYSKtfedv9VzFSVjxjh5AgN0p6QNZqJMba8ojdwXxkXElxWII3TzW7n9gmuo9i7PcTHbG06O0QDhiwnPPDsCzJOXZd4TbiNFuBKTlQeBf9OF/Z/48/wvrYxRc+FDTZo=,iv:7KOKoQSljgznmwgz50Qy/qS2eHjyicnaN5HpbwDYSis=,tag:kZKx8nQ08pDteUvQ4PfIOQ==,type:str]
-    auto:
-        enable: true
-        ha:
-            enable: true
-            master_nods: 2
-sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age:
-        - recipient: age13srthcdyr08hp7w5xvezn5fex4p5kw7tky2pnrfef2u4j3uqsqgqwak9gc
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBvaG9IME0wWUk0UTRDVitS
-            VnI2QmNRam9Bc0FYMVNXc2xKSFR2aHB6bUVvCkFEdi95cGp1QkNXZzZJZUl5QjBv
-            bVN0b05Va1pwL25nREhTL0JTaGQ1b3cKLS0tIElvczg3R0tGQnRjYUhVTGVVaGsv
-            TlkxWnNDWjlhUkVmSXo0WUFlaC9IaEkKdOpNkzVRs3edUlJ44JkDr7ER+fiXjQ3Y
-            8C2DUHdUm17ei47EnZlTi/pYkyDAg78lo2lXRFeecDfeb1wxUoiEdg==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-05-27T06:04:20Z"
-    mac: ENC[AES256_GCM,data:PUKwAABuyDzli3dvaYXJVilFE2eZvn0VL2TeojV2iFKajR9y0LKmADSOGa0qz8ssWmkpz23uPmBZ1VnchjIFygdwYdU8lTl7P5OD0M0mymBRmR4iZLKuifaWxN1V6V/h9702aYCzj1zhmy+YZQ5MQ1DT65g257p1n0PhhgjgfnY=,iv:DzNzhCUXPbub11XDN0ilPjbusT0hHaTVJVnnFYF9sKc=,tag:gzFnh+sO9Eylmyqp/5rZ1A==,type:str]
-    pgp: []
-    encrypted_regex: (^(users.*)$)|(network_token.*)
-    version: 3.8.1
