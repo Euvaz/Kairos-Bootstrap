@@ -2,4 +2,4 @@
 container_image: "quay.io/kairos/rockylinux:9-standard-amd64-generic-v3.0.11-k3sv1.29.3-k3s1"
 disable_http_server: true
 disable_netboot: true
-# state_dir: "/tmp/auroraboot"
+state_dir: "/tmp/auroraboot"
