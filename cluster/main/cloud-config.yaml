@@ -11,19 +11,19 @@ users:
       lock_passwd: true
       ssh_authorized_keys:
         - "github:Euvaz"
-install:
-    auto: true
-    device: "/dev/sda"
-    reboot: true
-k3s:
-    enabled: true
-    args:
-        - "--cluster-cidr 10.244.0.0/16"
-        - "--disable coredns,flannel,local-storage,servicelb,traefik"
-        - "--disable-network-policy"
-        - "--etcd-expose-metrics true"
-        - "--flannel-backend none"
-        - "--service-cidr 10.96.0.0/12"
-        - "--write-kubeconfig-mode 0644"
-kubevip:
-    eip: "192.168.122.254"
+# install:
+#     auto: true
+#     device: "/dev/sda"
+#     reboot: true
+# k3s:
+#     enabled: true
+#     args:
+#         - "--cluster-cidr 10.244.0.0/16"
+#         - "--disable coredns,flannel,local-storage,servicelb,traefik"
+#         - "--disable-network-policy"
+#         - "--etcd-expose-metrics true"
+#         - "--flannel-backend none"
+#         - "--service-cidr 10.96.0.0/12"
+#         - "--write-kubeconfig-mode 0644"
+# kubevip:
+#     eip: "192.168.122.254"
