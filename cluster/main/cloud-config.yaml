@@ -5,12 +5,12 @@ users:
     # - name: kairos
     #   lock_passwd: true
     #   shell: /usr/sbin/nologin
-    - name: seraph
+    - name: "seraph"
       groups:
-        - admin
+        - "admin"
       lock_passwd: true
       ssh_authorized_keys:
-        - github:euvaz
+        - "github:Euvaz"
 # install:
 #     auto: true
 #     device: "/dev/sda"
