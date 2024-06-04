@@ -2,19 +2,16 @@
 # TODO: Add go-templating for MAC filtering
 hostname: "k8s-main-{{ trunc 6 .MachineID }}"
 users:
-  # - name: kairos
-  #   lock_passwd: true
-  #   shell: /usr/sbin/nologin
-  - name: "seraph"
+  - name: "kairos"
     groups:
       - "admin"
     lock_passwd: true
     ssh_authorized_keys:
       - "github:Euvaz"
-# install:
+install:
 #   auto: true
 #   device: "/dev/sda"
-#   reboot: true
+  reboot: true
 # k3s:
 #   enabled: true
 #   args:
