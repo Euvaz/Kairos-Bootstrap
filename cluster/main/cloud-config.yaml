@@ -9,8 +9,8 @@ users:
     ssh_authorized_keys:
       - "github:Euvaz"
 install:
-#   auto: true
-#   device: "/dev/sda"
+  auto: true
+  device: "/dev/sda"
   reboot: true
 # k3s:
 #   enabled: true
