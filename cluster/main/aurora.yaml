@@ -1,2 +1,3 @@
 ---
-container_image: "quay.io/kairos/debian:bookworm-standard-amd64-generic-v3.0.12-k3sv1.28.5-k3s1"
+container_image: "quay.io/kairos/rockylinux:9-standard-amd64-generic-v3.0.12-k3sv1.29.3-k3s1"
+netboot.cmdline: "rd.neednet=1 ip=dhcp rd.cos.disable netboot install-mode console=tty0 selinux=0"
